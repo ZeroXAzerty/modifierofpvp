@@ -40,14 +40,13 @@ end)
 -------- Damage Modifier
 
 Citizen.CreateThread(function()
-    if Config.DamageMultiplier ~= 1 then
-        while true do
-            Citizen.Wait(0)
-            local currentWeaponHash = GetSelectedPedWeapon(ped)
-            SetWeaponDamageModifierThisFrame(currentWeaponHash, Config.DamageMultiplier)
-        end
+    local currentWeaponHash = nil
+    local ped = PlayerPedId()
+    while true do
+        Citizen.Wait(0)
+        currentWeaponHash = GetSelectedPedWeapon(ped)
+        SetWeaponDamageModifierThisFrame(currentWeaponHash, Config.DamageMultiplier)
     end
-
 end)
 
 
