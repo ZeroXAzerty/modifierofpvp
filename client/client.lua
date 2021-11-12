@@ -54,16 +54,43 @@ end)
 
 Citizen.CreateThread(function()
     if Config.Whipping == false then
+        local ped = PlayerPedId()
         while true do
             Citizen.Wait(0)
-            DisableControlAction(1, 140, true)
-            DisableControlAction(1, 141, true)
-            DisableControlAction(1, 142, true)
+            if IsPedArmed(ped, 6) then
+                DisableControlAction(1, 140, true)
+                DisableControlAction(1, 141, true)
+                DisableControlAction(1, 142, true)
+            end
         end
     end
 
 end)
 
+-------- Ragdoll
+
+Citizen.CreateThread(function()
+    local run = false
+    if Config.EnableRagdoll then
+        while true do
+            Citizen.Wait(0)
+            if IsControlJustPressed(1, 344) then 
+                run = true
+                while run == true do
+                    Citizen.Wait(0)
+
+                    if IsControlJustPressed(1, 344) then 
+                        run = false
+                    else
+                        SetPedToRagdoll(PlayerPedId(), 1000, 1000, 0, true, true , false)
+                    end
+                end
+            end
+        end
+    end
+
+
+end)
 
 
 

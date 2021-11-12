@@ -5,6 +5,8 @@ Config.Locale                     = 'fr'
 ---- VISUAL
 
 Config.EnableCrosshair            = false
+Config.EnableRagdoll              = true
+
 
 ---- NO VISUAL
 
